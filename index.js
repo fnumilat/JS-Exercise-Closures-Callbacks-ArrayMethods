@@ -191,10 +191,14 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames() {
+function getFullNames(runners) {
+  const fullname = [];
 
-
+  runners.forEach( runner => {fullname.push(`${runner.last_name}, ${runner.first_name}`)})
+  return fullname;
 }
+
+
 
 /**
  * ### Challenge `firstNamesAllCaps`
@@ -208,9 +212,13 @@ function getFullNames() {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps() {
-
+function firstNamesAllCaps(runners) {
+  return runners.map(r => {
+    return r.first_name.toUpperCase();
+  });
 }
+
+
 
 
 
@@ -246,14 +254,12 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(runner) {
-  return runner[6].reduce(sum, 0);
-
-  function sum(accumulator, currentValue) {
-    return accumulator + currentValue;
+function tallyUpDonations(runners) {
+  return runners.reduce(add, 0)
+  function add(accumulator, runner) {
+    return accumulator + runner.donation;
   }
-
-}
+ }
 
 /////////////// CLOSURES ///////////////
 /////////////// CLOSURES ///////////////
